@@ -109,7 +109,6 @@ export function useMintNFT() {
     useEffect(() => {
         if (isConfirmed && receipt?.status === "success") {
             console.log("✅ 민팅 성공! 트랜잭션 해시:", receipt.transactionHash);
-            alert("✅ 민팅 성공!");
             setPendingTokenURI(null);
             resolvePromise?.(true);
         }

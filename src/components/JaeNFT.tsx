@@ -26,7 +26,6 @@ export default function JaeNFT() {
 
         const success = await mintNFT(uri);
         if (success) {
-            alert("✅ 민팅 성공!");
         } else {
             alert("❌ 민팅 실패!");
         }
