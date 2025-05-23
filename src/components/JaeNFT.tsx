@@ -3,11 +3,11 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Ghost } from "lucide-react";
+import { Sparkles, Ghost, Shield } from "lucide-react";
 import Image from "next/image";
 import ConnectWallet from "@/components/ConnectWallet";
 import { useAccount } from "wagmi";
-import { useMintNFT } from "../lib/useMIntNFT"
+import { useMintNFT } from "../lib/useMIntNFT";
 
 export default function JaeNFT() {
     const { address } = useAccount();
@@ -17,6 +17,10 @@ export default function JaeNFT() {
         "https://magenta-wrong-sloth-298.mypinata.cloud/ipfs/QmaLSYUkPzyBHEpkqLhfYAJCBoCDWX4kbfx8F9bP9UQoRF";
     const assassinURI =
         "https://magenta-wrong-sloth-298.mypinata.cloud/ipfs/QmNRnAxQ9ibiVExRDKnCzanC4mo7bgxPNXD5ZH9eUXgL3v";
+    const holyKnightURI =
+        "https://gateway.pinata.cloud/ipfs/QmNVZKJefH4BCQT7bv8gVZNmPD2pxZd5SDhPfHkvaatcBB";
+    const voodooURI = "https://gateway.pinata.cloud/ipfs/QmbQARt9YVEhsehJJ9beH76ngBEmPqzCrD4iANWjdix5qR";
+    const BeastcallerURI = "https://gateway.pinata.cloud/ipfs/QmPeHeF3RLGB2ATq3HrtXpmEmxKzkh25miJLs8kXCd8bhu";
 
     const handleMint = async (uri: string) => {
         if (!address) {
@@ -25,11 +29,9 @@ export default function JaeNFT() {
         }
 
         const success = await mintNFT(uri);
-        if (success) {
-        } else {
+        if (!success) {
             alert("❌ 민팅 실패!");
         }
-
     };
 
     return (
@@ -41,7 +43,7 @@ export default function JaeNFT() {
                 </p>
             </header>
 
-            <section className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+            <section className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 {/* Magician Jae */}
                 <Card className="bg-[#222] border border-blue-600 shadow-lg flex flex-col justify-between">
                     <CardContent className="p-6 flex flex-col flex-grow">
@@ -61,15 +63,13 @@ export default function JaeNFT() {
                         <p className="text-gray-400 mb-6">
                             마법과 지혜를 상징하는 마법사 Jae. 정의의 서와 룬 스태프로 혼돈에 질서를 부여합니다.
                         </p>
-                        <div className="flex flex-col gap-2 mt-auto">
-                            <Button
-                                onClick={() => handleMint(magicianURI)}
-                                disabled={isPending}
-                                className="bg-purple-600 hover:bg-purple-500 w-full"
-                            >
-                                {isPending ? "민팅 중..." : "Magician Jae 민팅하기"}
-                            </Button>
-                        </div>
+                        <Button
+                            onClick={() => handleMint(magicianURI)}
+                            disabled={isPending}
+                            className="bg-purple-600 hover:bg-purple-500 w-full"
+                        >
+                            {isPending ? "민팅 중..." : "Magician Jae 민팅하기"}
+                        </Button>
                     </CardContent>
                 </Card>
 
@@ -92,17 +92,108 @@ export default function JaeNFT() {
                         <p className="text-gray-400 mb-6">
                             그림자 속 정의의 집행자 Jae. 은밀한 칼날로 권력의 어둠을 가릅니다.
                         </p>
-                        <div className="flex flex-col gap-2 mt-auto">
-                            <Button
-                                onClick={() => handleMint(assassinURI)}
-                                disabled={isPending}
-                                className="bg-red-600 hover:bg-red-500 w-full"
-                            >
-                                {isPending ? "민팅 중..." : "Assassin Jae 민팅하기"}
-                            </Button>
-                        </div>
+                        <Button
+                            onClick={() => handleMint(assassinURI)}
+                            disabled={isPending}
+                            className="bg-red-600 hover:bg-red-500 w-full"
+                        >
+                            {isPending ? "민팅 중..." : "Assassin Jae 민팅하기"}
+                        </Button>
                     </CardContent>
                 </Card>
+
+                {/* Holy Knight Jae */}
+                <Card className="bg-[#222] border border-yellow-500 shadow-lg flex flex-col justify-between">
+                    <CardContent className="p-6 flex flex-col flex-grow">
+                        <div className="rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,0,0.6)] mb-4">
+                            <Image
+                                src="/images/Holy_Knight_Jae.jpeg"
+                                alt="Holy Knight Jae"
+                                width={400}
+                                height={400}
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                        <div className="flex items-center gap-4 mb-4">
+                            <Shield className="text-yellow-300" />
+                            <h2 className="text-2xl font-semibold">Holy Knight Jae</h2>
+                        </div>
+                        <p className="text-gray-400 mb-6">
+                            정의와 빛의 기사 Jae. 말과 방패로 약자를 수호하며, 어둠을 밝히는 진실의 눈을 가졌습니다.
+                        </p>
+                        <Button
+                            onClick={() => handleMint(holyKnightURI)}
+                            disabled={isPending}
+                            className="bg-yellow-600 hover:bg-yellow-500 w-full"
+                        >
+                            {isPending ? "민팅 중..." : "Holy Knight Jae 민팅하기"}
+                        </Button>
+                    </CardContent>
+                </Card>
+
+                {/* Spiritbinder Jae */}
+                <Card className="bg-[#222] border border-green-600 shadow-lg flex flex-col justify-between">
+                    <CardContent className="p-6 flex flex-col flex-grow">
+                        <div className="relative w-full aspect-[4/5] bg-black rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[...] mb-4">
+                            <Image
+                                src="/images/Spiritbinder_Jae.jpeg"
+                                alt="Spiritbinder Jae"
+                                fill
+                                className="object-contain"
+                            />
+                        </div>
+                        <div className="flex items-center gap-4 mb-4">
+                            <Ghost className="text-green-400" />
+                            <h2 className="text-2xl font-semibold">Spiritbinder Jae</h2>
+                        </div>
+                        <p className="text-gray-400 mb-6">
+                            부패한 자들의 희생이 된 영혼의 분노를 대변하는 이재명. 주술과 혼령의 힘으로 정의를 바로세우는 부두술사입니다.
+                        </p>
+                        <Button
+                            onClick={() => handleMint(voodooURI)}
+                            disabled={isPending}
+                            className="bg-green-700 hover:bg-green-600 w-full"
+                        >
+                            {isPending ? "민팅 중..." : "Spiritbinder Jae 민팅하기"}
+                        </Button>
+                    </CardContent>
+                </Card>
+
+                {/* Beastcaller Jae */}
+                <Card className="bg-[#222] border border-indigo-600 shadow-lg flex flex-col justify-between">
+                    <CardContent className="p-6 flex flex-col flex-grow">
+                        <div className="rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(138,43,226,0.6)] mb-4">
+                            <Image
+                                src="/images/Beastcaller_Jae.jpeg"
+                                alt="Beastcaller Jae"
+                                width={400}
+                                height={400}
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                        <div className="flex items-center gap-4 mb-4">
+                            <Ghost className="text-indigo-400" />
+                            <h2 className="text-2xl font-semibold">Beastcaller Jae</h2>
+                        </div>
+                        <p className="text-gray-400 mb-6">
+                            고대의 야수와 정령을 조종하는 정치 조련사 Jae. 혼돈의 짐승 윤석렬을 길들여 정의의 도구로 바꾸려는 비스트마스터입니다.
+                        </p>
+                        <Button
+                            onClick={() =>
+                                handleMint(
+                                    "https://gateway.pinata.cloud/ipfs/QmPeHeF3RLGB2ATq3HrtXpmEmxKzkh25miJLs8kXCd8bhu"
+                                )
+                            }
+                            disabled={isPending}
+                            className="bg-indigo-700 hover:bg-indigo-600 w-full"
+                        >
+                            {isPending ? "민팅 중..." : "Beastcaller Jae 민팅하기"}
+                        </Button>
+                    </CardContent>
+                </Card>
+
+
+
             </section>
 
             <section className="mt-16 max-w-xl mx-auto text-center">

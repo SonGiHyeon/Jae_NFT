@@ -1,3 +1,5 @@
+// 아직 안쓰는 코드
+
 'use client';
 
 import Image from 'next/image';

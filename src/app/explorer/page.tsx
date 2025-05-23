@@ -61,10 +61,6 @@ export default function ExplorerPage() {
                     </div>
                 ))}
             </div>
-
-
-
-
         </div>
     );
 }
